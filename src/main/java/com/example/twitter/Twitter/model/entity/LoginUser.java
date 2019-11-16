@@ -1,22 +1,17 @@
 package com.example.twitter.Twitter.model.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class LoginUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String login;
     private String password;
     private String role;
-
-
-
 
     public LoginUser(String login, String password, String role) {
         this.login = login;
@@ -55,4 +50,7 @@ public class LoginUser {
     public void setRole(String role) {
         this.role = role;
     }
+
+
+
 }

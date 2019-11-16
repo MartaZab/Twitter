@@ -49,11 +49,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("user")
-                .password("password")
+                .password(bCryptPasswordEncoder.encode("password"))
                 .roles("USER")
                 .and()
                 .withUser("admin")
-                .password("password")
+                .password(bCryptPasswordEncoder.encode("password"))
                 .roles("ADMIN");
         auth.jdbcAuthentication()
                 .usersByUsernameQuery("select u.login, u.password, 1 from login_user u where u.login=?")

@@ -1,21 +1,24 @@
 package com.example.twitter.Twitter.model.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import com.example.twitter.Twitter.model.message.Comment;
+
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
     private String name;
     private String surname;
     private Date joinDate;
+    @OneToMany
+    private List<Comment> comments = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -48,4 +51,14 @@ public class User {
     public void setJoinDate(Date joinDate) {
         this.joinDate = joinDate;
     }
+
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
 }

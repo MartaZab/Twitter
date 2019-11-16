@@ -2,14 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Login</title>
+    <title>Login to Twitter</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
     <link type="text/css" rel="stylesheet" href="../static/css/style.css"
           th:href="@{/css/style.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body style="text-align: center">
-<h1><b>Twitter</b></h1>
+<h1>Twitter <i class="fa fa-twitter" style="font-size:48px;color:blue"></i></h1>
 <form th:action="@{/login-process}" method="post">
     <label class="label label-primary" for = "inputLogin">Login:</label>
     <input id="inputLogin" type="text" placeholder="Podaj login"
@@ -17,8 +19,12 @@
     <label class="label label-primary" for="inputPassword">Password:</label>
     <input id="inputPassword" type="password"
            th:required="required" placeholder="Podaj haslo" name="password"/>
-    <button type="button" class="btn btn-info">Zaloguj</button>
-    <button type="button" class="btn btn-info">Zarejestruj sie</button>
+    <button type="submit" class="btn btn-info">Zaloguj</button>
 </form>
+
+<form action="/addloginuser">
+    <button action = type="submit" class="btn btn-info">Zarejestruj się</button>
+</form>
+
 </body>
 </html>
