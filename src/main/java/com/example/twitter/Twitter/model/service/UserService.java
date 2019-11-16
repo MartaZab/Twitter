@@ -44,9 +44,10 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public void deleteUser(UserDto userDto){
-        userRepository.delete(userDto.getId());
-    }
+//    public void deleteUser(UserDto userDto){
+//        userRepository.delete(userDto.getId());
+//
+//    }
 
 
 }

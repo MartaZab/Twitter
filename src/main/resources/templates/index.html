@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Witaj w pierwszej aplikacji</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/style.css"
+          th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+<h1>Witaj w pierwszej aplikacji</h1>
+
+
+
+<form action="/users">
+    <button class="btn btn-primary" type="submit">Wyswietl uzytkownika</button>
+</form>
+
+<form action="/adduser">
+    <button class="btn btn-success" type="submit">Dodaj uzytkownika</button>
+</form>
+
+<form action="/addloginuser">
+    <button class="btn btn-danger" type="submit">Dodaj uzytkownika aplikacji</button>
+</form>
+
+
+</body>
+</html>

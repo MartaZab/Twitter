@@ -1,5 +1,7 @@
 package com.example.twitter.Twitter.model.dto;
 
+import com.example.twitter.Twitter.model.entity.User;
+
 import java.util.Date;
 
 public class UserDto {

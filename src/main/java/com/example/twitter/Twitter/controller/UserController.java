@@ -33,10 +33,10 @@ public class UserController {
         return "usersavedaccess";
     }
 
-    @PostMapping("/deleteuser")
-    public String deleteUser(@ModelAttribute("user") UserDto user){
-        System.out.println(user.getId() + " " + user.getName() + " " + user.getSurname());
-        service.deleteUser(user);
-        return "index";
-    }
+//    @PostMapping("/deleteuser")
+//    public String deleteUser(@ModelAttribute("user") UserDto user){
+//        System.out.println(user.getId() + " " + user.getName() + " " + user.getSurname());
+//        service.deleteUser(user);
+//        return "index";
+//    }
 }
