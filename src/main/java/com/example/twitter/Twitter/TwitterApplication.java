@@ -8,6 +8,8 @@ public class TwitterApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TwitterApplication.class, args);
+		System.out.println("TEST");
 	}
+
 
 }
