@@ -2,6 +2,7 @@ package com.example.twitter.Twitter.model.entity;
 
 
 import com.example.twitter.Twitter.model.message.Comment;
+import com.example.twitter.Twitter.model.message.Post;
 
 import javax.persistence.*;
 import java.util.*;
@@ -19,6 +20,8 @@ public class User {
     private Date joinDate;
     @OneToMany
     private List<Comment> comments = new ArrayList<>();
+    @OneToMany
+    private List<Post> posts = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -61,4 +64,11 @@ public class User {
         this.comments = comments;
     }
 
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
 }

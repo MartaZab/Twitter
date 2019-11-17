@@ -7,16 +7,18 @@
 <body>
 <h1>New login user</h1>
 <form th:action="@{/addloginuser}" th:object="${loginuser}"
-      method="post">
+method="post">
     <p>Login: <input type="text" placeholder="Podaj login" th:field="*{login}"/></p>
     <p>Password: <input type="password" placeholder="Podaj haslo" th:field="*{password}"/></p>
-    <select th:field="*{role}">
-        <option th:each="role : ${T(com.example.twitter.RoleType).values()}"
-                th:value="${role}" th:text="${role}">
-        </option>
-    </select>
-    <p><input type="submit" value="Dodaj"/>
-        <input type="reset" value="Reset"/></p>
+<select th:field="*{role}">
+    <option th:each="role : ${T(sda.mvc.SpringMVC.model.RoleType).values()}"
+    th:value="${role}" th:text="${role}">
+    </option>
+</select>
+<p><input type="submit" value="Dodaj"/>
+    <input type="reset" value="Reset"/></p>
+
+
 </form>
 </body>
 </html>
