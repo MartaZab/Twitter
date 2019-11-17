@@ -5,10 +5,12 @@ import com.example.twitter.Twitter.model.message.Post;
 import com.example.twitter.Twitter.repository.PostRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class PostService {
 
     @Autowired
