@@ -7,27 +7,35 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
     <link type="text/css" rel="stylesheet" href="../static/css/style.css"
           th:href="@{/css/style.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<table class="regular-table">
-    <thead>
-    <tr>
-        <th>Message</th>
+<div class="container">
+    <table class="table">
+        <h2><i class="fa fa-twitter" style="font-size:30px;color:dodgerblue">
+            Wszystkie posty</i></h2>
+        <thead>
+        <tr class="table-primary">
+            <th>Użytkownik:</th>
+            <th>Umieścił post:</th>
+        </tr>
+        </thead>
+        <tbody>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="post : ${allPosts}">
-        <form th:action="@{deletepost}" method="post" th:object="${post}">
-            <td th:text="${post.message}"></td>
-            <td>
-                <input type="hidden" name="id" th:value="${post.id}"/>
-                <button value="remove">Remove</button>
-            </td>
-        </form>
-    </tr>
-    </tbody>
-</table>
+        <tr th:each="post : ${allPosts}">
+            <form th:action="@{deletepost}" method="post" th:object="${post}">
+                <td>user</td>
+                <td th:text="${post.message}"></td>
+                <td>
+                    <input type="hidden" name="id" th:value="${post.id}"/>
+                    <button value="remove" class="btn btn-info">Remove</button>
+                </td>
+            </form>
+        </tr>
 
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
