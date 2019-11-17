@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Posts</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/style.css"
+          th:href="@{/css/style.css}"/>
+</head>
+<body>
+<table class="regular-table">
+    <thead>
+    <tr>
+        <th>Message</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post : ${allPosts}">
+        <form th:action="@{deletepost}" method="post" th:object="${post}">
+            <td th:text="${post.message}"></td>
+            <td>
+                <input type="hidden" name="id" th:value="${post.id}"/>
+                <button value="remove">Remove</button>
+            </td>
+        </form>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
