@@ -37,9 +37,8 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
-//    public void deletePost(PostDto postDto){
+//    public void deletePost(PostDto postDto) {
 //        postRepository.delete(postDto.getId());
-//
 //    }
 
 }

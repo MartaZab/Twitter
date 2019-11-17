@@ -1,6 +1,7 @@
 package com.example.twitter.Twitter.model.dto;
 
 import com.example.twitter.Twitter.model.entity.User;
+import com.example.twitter.Twitter.model.message.Post;
 
 public class PostDto {
 
@@ -9,8 +10,7 @@ public class PostDto {
     private String message;
 
 
-    public PostDto(User user, String message) {
-        this.user = user;
+    public PostDto(String message) {
         this.message = message;
     }
 

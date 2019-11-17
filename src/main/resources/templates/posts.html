@@ -19,23 +19,28 @@
         <tr class="table-primary">
             <th>Użytkownik:</th>
             <th>Umieścił post:</th>
+            <th>Reakcja:</th>
         </tr>
         </thead>
         <tbody>
 
         <tr th:each="post : ${allPosts}">
-            <form th:action="@{/deletepost}" method="post" th:object="${post}">
-                <td>user</td>
+            <form th:action="@{deletepost}" method="post" th:object="${post}">
+                <td th:text="${post.user}">user</td>
                 <td th:text="${post.message}"></td>
                 <td>
                     <input type="hidden" name="id" th:value="${post.id}"/>
-                    <button value="remove" class="btn btn-info">Remove</button>
+                    <button value="remove" class="btn btn-info">Usuń post</button>
                 </td>
+
             </form>
         </tr>
 
         </tbody>
     </table>
+    <form action="/index">
+    <button value="submit" class="btn btn-info">Powrót do strony głównej</button>
+    </form>
 </div>
 </body>
 </html>

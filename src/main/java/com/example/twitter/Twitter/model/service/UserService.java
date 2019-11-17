@@ -21,9 +21,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void addUser(UserDto userDto){
+    public void addUser(UserDto userDto) {
         User user = mapper.map(userDto, User.class);
-        System.out.println("Zmapowany user: "  + user.getId()
+        System.out.println("Zmapowany user: " + user.getId()
                 + " " + user.getName()
                 + " " + user.getSurname()
                 + " " + user.getJoinDate());
@@ -31,7 +31,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<UserDto> getAllUsers(){
+    public List<UserDto> getAllUsers() {
         List<User> users = userRepository.findAll();
         for (User u : users) {
             System.out.println("User: " + u.getId()
@@ -44,9 +44,8 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-//    public void deleteUser(UserDto userDto){
+//    public void deleteUser(UserDto userDto) {
 //        userRepository.delete(userDto.getId());
-//
 //    }
 
 

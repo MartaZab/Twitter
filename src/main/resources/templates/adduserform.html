@@ -10,12 +10,12 @@
           th:href="@{/css/style.css}"/>
 </head>
 <body>
-<h1>Create user</h1>
+<h1>Nowy użytkownik</h1>
 
 <form th:action="@{/adduser}" method="post" th:object="${userToInsert}">
-    <p>Name:<input type="text" th:field="*{name}"/></p>
-    <p>Surname:<input type="text" th:field="*{surname}"/></p>
-    <p><input type = "submit" value="Dodaj"/></p>
+    <p>Imię:<input type="text" th:field="*{name}"/></p>
+    <p>Nazwisko:<input type="text" th:field="*{surname}"/></p>
+    <p><input type = "submit" class="btn btn-primary" value="Dodaj"/></p>
 </form>
 
 </body>

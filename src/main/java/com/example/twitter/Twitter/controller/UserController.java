@@ -18,7 +18,6 @@ public class UserController {
 
     public ModelAndView userView(){
         return new ModelAndView("users", "allUsers", service.getAllUsers());
-
     }
 
     @GetMapping("/adduser")
@@ -27,15 +26,14 @@ public class UserController {
     }
 
     @PostMapping("/adduser")
-    public String addNewUser(@ModelAttribute UserDto user){
+    public String addNewUser(@ModelAttribute UserDto user) {
         System.out.println("Dodajemy uzytkownika " + user.getName() + " " + user.getSurname());
         service.addUser(user);
         return "usersavedaccess";
     }
 
 //    @PostMapping("/deleteuser")
-//    public String deleteUser(@ModelAttribute("user") UserDto user){
-//        System.out.println(user.getId() + " " + user.getName() + " " + user.getSurname());
+//    public String deleteUser(@ModelAttribute("user") UserDto user) {
 //        service.deleteUser(user);
 //        return "index";
 //    }
