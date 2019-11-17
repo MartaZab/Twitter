@@ -24,7 +24,7 @@
         <tbody>
 
         <tr th:each="post : ${allPosts}">
-            <form th:action="@{deletepost}" method="post" th:object="${post}">
+            <form th:action="@{/deletepost}" method="post" th:object="${post}">
                 <td>user</td>
                 <td th:text="${post.message}"></td>
                 <td>
