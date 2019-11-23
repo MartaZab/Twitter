@@ -6,11 +6,11 @@ import com.example.twitter.Twitter.model.message.Post;
 public class CommentDto {
 
     private Long id;
-    private User user;
-    private Post post;
+    private UserDto user;
+    private PostDto post;
     private String message;
 
-    public CommentDto(Post post, String message) {
+    public CommentDto(PostDto post, String message) {
         this.post = post;
         this.message = message;
     }
@@ -27,19 +27,19 @@ public class CommentDto {
         this.id = id;
     }
 
-    public User getUser() {
+    public UserDto getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDto user) {
         this.user = user;
     }
 
-    public Post getPost() {
+    public PostDto getPost() {
         return post;
     }
 
-    public void setPost(Post post) {
+    public void setPost(PostDto post) {
         this.post = post;
     }
 

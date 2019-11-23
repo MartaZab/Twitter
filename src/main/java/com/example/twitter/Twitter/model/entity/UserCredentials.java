@@ -4,7 +4,7 @@ package com.example.twitter.Twitter.model.entity;
 import javax.persistence.*;
 
 @Entity
-public class LoginUser {
+public class UserCredentials extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -13,13 +13,13 @@ public class LoginUser {
     private String password;
     private String role;
 
-    public LoginUser(String login, String password, String role) {
+    public UserCredentials(String login, String password, String role) {
         this.login = login;
         this.password = password;
         this.role = role;
     }
 
-    public LoginUser() {
+    public UserCredentials() {
     }
 
     public Long getId() {

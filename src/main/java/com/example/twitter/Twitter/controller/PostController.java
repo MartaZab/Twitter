@@ -34,11 +34,11 @@ public class PostController {
         return "postsaved";
     }
 
-//    @PostMapping("/deletepost")
-//    public String deletePost(@ModelAttribute("post") PostDto post){
-//        System.out.println(post.getId() + " " + post.getMessage());
-//        service.deletePost(post);
-//        return "index";
-//    }
+    @PostMapping("/deletepost")
+    public String deletePost(@ModelAttribute("post") PostDto post){
+        System.out.println(post.getId() + " " + post.getMessage());
+        service.deletePost(post);
+        return "index";
+    }
 
 }

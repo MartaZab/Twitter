@@ -1,6 +1,9 @@
 package com.example.twitter.Twitter.model.service;
 
 import com.example.twitter.Twitter.model.dto.PostDto;
+import com.example.twitter.Twitter.model.dto.UserCredentialsDto;
+import com.example.twitter.Twitter.model.entity.User;
+import com.example.twitter.Twitter.model.entity.UserCredentials;
 import com.example.twitter.Twitter.model.message.Post;
 import com.example.twitter.Twitter.repository.PostRepository;
 import org.modelmapper.ModelMapper;
@@ -19,8 +22,16 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private UserService userService;
+
+    private int count = 0;
+
     public void addPost(PostDto postDto){
+        User user = userService.getLoggedUser();
+//        User loggedUSer = userService
         Post post = mapper.map(postDto, Post.class);
+        post.setUser(user);
         System.out.println("Zmapowany post: "  + post.getId()
                 + " " + post.getMessage());
         postRepository.save(post);
@@ -37,8 +48,7 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
-//    public void deletePost(PostDto postDto) {
-//        postRepository.delete(postDto.getId());
-//    }
-
+    public void deletePost(PostDto postDto) {
+        postRepository.deleteById(postDto.getId());
+    }
 }

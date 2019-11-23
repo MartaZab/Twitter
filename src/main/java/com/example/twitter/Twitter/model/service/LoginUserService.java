@@ -1,8 +1,7 @@
 package com.example.twitter.Twitter.model.service;
 
 
-import com.example.twitter.Twitter.model.dto.LoginUserDto;
-import com.example.twitter.Twitter.model.entity.LoginUser;
+import com.example.twitter.Twitter.model.dto.UserCredentialsDto;
 import com.example.twitter.Twitter.repository.LoginUserRepository;
 import com.example.twitter.Twitter.validation.BidingValidator;
 import org.modelmapper.ModelMapper;
@@ -23,45 +22,45 @@ public class LoginUserService {
     @Autowired
     private ModelMapper mapper;
 
-    public void addLoginUser (LoginUserDto loginUserDto, BindingResult result) {
+    public void addLoginUser (UserCredentialsDto userCredentialsDto, BindingResult result) {
         BidingValidator.validate(result);
-        System.out.println("Dodajemy uzytkownika " + loginUserDto.getLogin() + " " + loginUserDto.getPassword() + " " + loginUserDto.getRole());
-        validateLoginUser(loginUserDto);
-        if(checkAuthorities(loginUserDto)){
+        System.out.println("Dodajemy uzytkownika " + userCredentialsDto.getLogin() + " " + userCredentialsDto.getPassword() + " " + userCredentialsDto.getRole());
+        validateLoginUser(userCredentialsDto);
+        if(checkAuthorities(userCredentialsDto)){
             System.out.println("Moge dodac uzytkownika");
-            String hash = bCryptPasswordEncoder.encode(loginUserDto.getPassword());
-            System.out.println("Haslo: " + loginUserDto.getPassword() + " " + " Hash: " + hash + " Matches: " + bCryptPasswordEncoder.matches("test", hash));
+            String hash = bCryptPasswordEncoder.encode(userCredentialsDto.getPassword());
+            System.out.println("Haslo: " + userCredentialsDto.getPassword() + " " + " Hash: " + hash + " Matches: " + bCryptPasswordEncoder.matches("test", hash));
 
-            LoginUser loginUser =  mapper.map(loginUserDto, LoginUser.class);
+            com.example.twitter.Twitter.model.entity.UserCredentials loginUser =  mapper.map(userCredentialsDto, com.example.twitter.Twitter.model.entity.UserCredentials.class);
             loginUser.setPassword(hash);
             loginUserRepository.save(loginUser);
         } else {
             throw new RuntimeException("Wrong role!");
         }
     }
-    private void validateLoginUser(LoginUserDto loginUserDto){
-        if(loginExist(loginUserDto)){
+    private void validateLoginUser(UserCredentialsDto userCredentialsDto){
+        if(loginExist(userCredentialsDto)){
             throw new RuntimeException(" login already exist");
         }
-        loginUserRepository.countByLogin(loginUserDto.getLogin());
-        if(!checkAuthorities(loginUserDto)){
+        loginUserRepository.countByLogin(userCredentialsDto.getLogin());
+        if(!checkAuthorities(userCredentialsDto)){
             throw new RuntimeException("Wrong role!");
         }
     }
 
-    private boolean loginExist (LoginUserDto loginUserDto){
-        return loginUserRepository.countByLogin(loginUserDto.getLogin()) >0;
+    private boolean loginExist (UserCredentialsDto userCredentials){
+        return loginUserRepository.countByLogin(userCredentials.getLogin()) >0;
     }
 
 
-    private boolean checkAuthorities(LoginUserDto loginUserDto) {
+    private boolean checkAuthorities(UserCredentialsDto userCredentials) {
         return SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getAuthorities()
                 .toArray()[0]
                 .toString()
-                .equals(loginUserDto.getRole());
+                .equals(userCredentials.getRole());
     }
 }
 

@@ -1,11 +1,16 @@
 package com.example.twitter.Twitter.model.service;
 
 
+import com.example.twitter.Twitter.model.dto.UserCredentialsDto;
 import com.example.twitter.Twitter.model.dto.UserDto;
 import com.example.twitter.Twitter.model.entity.User;
+import com.example.twitter.Twitter.model.entity.UserCredentials;
+import com.example.twitter.Twitter.repository.UserCredentialsRepository;
 import com.example.twitter.Twitter.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,16 +24,25 @@ public class UserService {
     private ModelMapper mapper;
 
     @Autowired
+    private UserCredentialsRepository userCredentialsRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
-    public void addUser(UserDto userDto) {
-        User user = mapper.map(userDto, User.class);
-        System.out.println("Zmapowany user: " + user.getId()
-                + " " + user.getName()
-                + " " + user.getSurname()
-                + " " + user.getJoinDate());
-        user.setJoinDate(new Date());
-        userRepository.save(user);
+    @Autowired
+    private PasswordEncoder bCryptPasswordEncoder;
+
+
+    public void addUser(UserCredentialsDto userCredentialsDto) {
+        UserCredentials userCredentials = mapper.map(userCredentialsDto, UserCredentials.class);
+        System.out.println("Zmapowany user: "
+                + " " + userCredentials.getName()
+                + " " + userCredentials.getSurname());
+        userCredentials.setJoinDate(new Date());
+        userCredentials.setRole("ROLE_USER");
+        userCredentials.setPassword(bCryptPasswordEncoder.encode(userCredentials.getPassword()));
+
+        userCredentialsRepository.save(userCredentials);
     }
 
     public List<UserDto> getAllUsers() {
@@ -44,9 +58,15 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-//    public void deleteUser(UserDto userDto) {
+    //    public void deleteUser(UserDto userDto) {
 //        userRepository.delete(userDto.getId());
 //    }
+    public String getLoggedUserLogin() {
+        return ((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+    }
 
+    public User getLoggedUser() {
+        return userCredentialsRepository.findByLogin(getLoggedUserLogin()).orElseThrow(() -> new RuntimeException("Brk ussera"));
+    }
 
 }

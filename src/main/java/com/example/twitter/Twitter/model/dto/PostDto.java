@@ -1,12 +1,9 @@
 package com.example.twitter.Twitter.model.dto;
 
-import com.example.twitter.Twitter.model.entity.User;
-import com.example.twitter.Twitter.model.message.Post;
-
 public class PostDto {
 
     private Long id;
-    private User user;
+    private UserDto user;
     private String message;
 
 
@@ -25,11 +22,11 @@ public class PostDto {
         this.id = id;
     }
 
-    public User getUser() {
+    public UserDto getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDto user) {
         this.user = user;
     }
 

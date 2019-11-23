@@ -24,25 +24,20 @@
         </thead>
         <tbody>
 
-
-
         <tr th:each="post : ${allPosts}">
-
             <form th:action="@{deletepost}" method="post" th:object="${post}">
-                <td th:text="${post.user}"></td>
+                <td th:text="${post.user.name}"></td>
                 <td th:text="${post.message}"></td>
-
                 <td>
                     <input type="hidden" name="id" th:value="${post.id}"/>
                     <button value="remove" class="btn btn-info">Usuń post</button>
                 </td>
-
             </form>
             <td>
-            <form th:action="@{addcomment}" method="post" th:object="${post}">
-                <input type="hidden" name="id" th:value="${post.id}"/>
-                <button  value="submit" class="btn btn-info">Dodaj komentarz</button>
-            </form>
+                <form th:action="@{addcomment}" method="post" th:object="${post}">
+                    <input type="hidden" name="id" th:value="${post.id}"/>
+                    <button  value="submit" class="btn btn-info">Dodaj komentarz</button>
+                </form>
             </td>
         </tr>
 
