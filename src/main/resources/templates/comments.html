@@ -18,38 +18,30 @@
         <thead>
         <tr class="table-primary">
             <th>Użytkownik:</th>
-            <th>Umieścił post:</th>
+            <th>Umieścił komentarz:</th>
+            <th>Do posta:</th>
             <th>Reakcja:</th>
         </tr>
         </thead>
         <tbody>
 
-
-
-        <tr th:each="post : ${allPosts}">
-
-            <form th:action="@{deletepost}" method="post" th:object="${post}">
-                <td th:text="${post.user}"></td>
-                <td th:text="${post.message}"></td>
-
+        <tr th:each="post : ${allComments}">
+            <form th:action="@{deletecomment}" method="post" th:object="${comment}">
+                <td th:text="${comment.user}">user</td>
+                <td th:text="${comment.message}"></td>
+                <td th:text="${comment.post}">user</td>
                 <td>
                     <input type="hidden" name="id" th:value="${post.id}"/>
-                    <button value="remove" class="btn btn-info">Usuń post</button>
+                    <button value="remove" class="btn btn-info">Usuń komentarz</button>
                 </td>
 
             </form>
-            <td>
-            <form th:action="@{addcomment}" method="post" th:object="${post}">
-                <input type="hidden" name="id" th:value="${post.id}"/>
-                <button  value="submit" class="btn btn-info">Dodaj komentarz</button>
-            </form>
-            </td>
         </tr>
 
         </tbody>
     </table>
     <form action="/index">
-    <button value="submit" class="btn btn-info">Powrót do strony głównej</button>
+        <button value="submit" class="btn btn-info">Powrót do strony głównej</button>
     </form>
 </div>
 </body>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Post saved!</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/style.css"
+          th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Komentarz zapisany!</h1>
+
+<form th:action="@{/index}">
+    <button type = "submit" class = "btn btn-info">OK!</button>
+</form>
+</body>
+</html>

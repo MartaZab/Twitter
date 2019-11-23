@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>New Comment</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/style.css"
+          th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Dodaj nowy komentarz</h1>
+
+<form th:action="@{/addcomment}" method="post" th:object="${commentToInsert}">
+    <p><h3>Treść komentarza:</h3><input type="text" th:field="*{message}"/></p>
+    <p><h3>Dodany do posta:</h3><input type="text" th:field="*{post}"/></p>
+    <p><input type = "submit" class = "btn btn-info" value="Dodaj komentarz"/></p>
+</form>
+
+</body>
+</html>
