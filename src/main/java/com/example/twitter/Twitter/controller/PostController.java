@@ -38,7 +38,7 @@ public class PostController {
     public String deletePost(@ModelAttribute("post") PostDto post){
         System.out.println(post.getId() + " " + post.getMessage());
         service.deletePost(post);
-        return "index";
+        return "redirect:posts";
     }
 
 }

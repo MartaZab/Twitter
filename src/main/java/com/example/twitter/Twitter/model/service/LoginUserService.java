@@ -2,6 +2,7 @@ package com.example.twitter.Twitter.model.service;
 
 
 import com.example.twitter.Twitter.model.dto.UserCredentialsDto;
+import com.example.twitter.Twitter.model.entity.user.UserCredentials;
 import com.example.twitter.Twitter.repository.LoginUserRepository;
 import com.example.twitter.Twitter.validation.BidingValidator;
 import org.modelmapper.ModelMapper;
@@ -31,7 +32,7 @@ public class LoginUserService {
             String hash = bCryptPasswordEncoder.encode(userCredentialsDto.getPassword());
             System.out.println("Haslo: " + userCredentialsDto.getPassword() + " " + " Hash: " + hash + " Matches: " + bCryptPasswordEncoder.matches("test", hash));
 
-            com.example.twitter.Twitter.model.entity.UserCredentials loginUser =  mapper.map(userCredentialsDto, com.example.twitter.Twitter.model.entity.UserCredentials.class);
+            UserCredentials loginUser =  mapper.map(userCredentialsDto, UserCredentials.class);
             loginUser.setPassword(hash);
             loginUserRepository.save(loginUser);
         } else {

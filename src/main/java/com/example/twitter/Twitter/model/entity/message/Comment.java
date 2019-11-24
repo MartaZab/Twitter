@@ -1,11 +1,10 @@
-package com.example.twitter.Twitter.model.message;
+package com.example.twitter.Twitter.model.entity.message;
 
-import com.example.twitter.Twitter.model.entity.User;
+import com.example.twitter.Twitter.model.entity.user.User;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "comment")
 public class Comment {
 
     @Id
@@ -15,14 +14,19 @@ public class Comment {
     private String message;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
 
     @ManyToOne
+    @JoinColumn(name = "post_id")
     private Post post;
 
     public Comment(String message) {
         this.message = message;
+    }
+
+    public Comment() {
     }
 
     public Long getId() {
@@ -47,5 +51,13 @@ public class Comment {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }

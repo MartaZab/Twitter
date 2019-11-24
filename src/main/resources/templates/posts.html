@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>Posts</title>
@@ -26,21 +26,21 @@
 
         <tr th:each="post : ${allPosts}">
             <form th:action="@{deletepost}" method="post" th:object="${post}">
-                <td th:text="${post.user.name}"></td>
+                <td th:text="${post.user.name + ' ' + post.user.surname}"></td>
                 <td th:text="${post.message}"></td>
+
                 <td>
                     <input type="hidden" name="id" th:value="${post.id}"/>
                     <button value="remove" class="btn btn-info">Usuń post</button>
                 </td>
             </form>
             <td>
-                <form th:action="@{addcomment}" method="post" th:object="${post}">
-                    <input type="hidden" name="id" th:value="${post.id}"/>
+                <form th:action="@{addcomment}" th:method="get" th:object="${post}">
+                    <input type="hidden" name="postId" th:value="${post.id}"/>
                     <button  value="submit" class="btn btn-info">Dodaj komentarz</button>
                 </form>
             </td>
         </tr>
-
         </tbody>
     </table>
     <form action="/index">

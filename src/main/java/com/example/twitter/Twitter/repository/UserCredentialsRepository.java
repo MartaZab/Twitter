@@ -1,7 +1,7 @@
 package com.example.twitter.Twitter.repository;
 
-import com.example.twitter.Twitter.model.entity.User;
-import com.example.twitter.Twitter.model.entity.UserCredentials;
+import com.example.twitter.Twitter.model.entity.user.User;
+import com.example.twitter.Twitter.model.entity.user.UserCredentials;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,23 +1,25 @@
-package com.example.twitter.Twitter.model.message;
+package com.example.twitter.Twitter.model.entity.message;
 
-import com.example.twitter.Twitter.model.entity.User;
+import com.example.twitter.Twitter.model.entity.user.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "post")
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
+
     private String message;
 
-    @OneToMany
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
 
 

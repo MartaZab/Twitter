@@ -1,27 +1,26 @@
-package com.example.twitter.Twitter.model.entity;
+package com.example.twitter.Twitter.model.entity.user;
 
-
-import com.example.twitter.Twitter.model.message.Comment;
-import com.example.twitter.Twitter.model.message.Post;
+import com.example.twitter.Twitter.model.entity.message.Comment;
+import com.example.twitter.Twitter.model.entity.message.Post;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     private Long id;
     private String name;
     private String surname;
     private Date joinDate;
-    @OneToMany
+
+    @OneToMany(mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
-    @OneToMany
+
+    @OneToMany(mappedBy = "user")
     private List<Post> posts = new ArrayList<>();
 
     public Long getId() {

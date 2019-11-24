@@ -1,7 +1,5 @@
 package com.example.twitter.Twitter.model.dto;
 
-import com.example.twitter.Twitter.model.entity.User;
-import com.example.twitter.Twitter.model.message.Post;
 
 public class CommentDto {
 
@@ -9,6 +7,7 @@ public class CommentDto {
     private UserDto user;
     private PostDto post;
     private String message;
+    private Long postId;
 
     public CommentDto(PostDto post, String message) {
         this.post = post;
@@ -17,6 +16,14 @@ public class CommentDto {
 
 
     public CommentDto() {
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
     public Long getId() {

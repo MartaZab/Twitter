@@ -18,23 +18,23 @@
         <thead>
         <tr class="table-primary">
             <th>Użytkownik:</th>
-            <th>Umieścił komentarz:</th>
+            <th>Umieścił komentarz o treści:</th>
             <th>Do posta:</th>
-            <th>Reakcja:</th>
+            <th>Napisanego przez:</th>
         </tr>
         </thead>
         <tbody>
 
-        <tr th:each="post : ${allComments}">
+        <tr th:each="comment : ${allComments}">
             <form th:action="@{deletecomment}" method="post" th:object="${comment}">
-                <td th:text="${comment.user}">user</td>
+                <td th:text="${comment.user.name} + ' ' + ${comment.user.surname}">user</td>
                 <td th:text="${comment.message}"></td>
-                <td th:text="${comment.post}">user</td>
+                <td th:text="${comment.post.message}"></td>
+                <td th:text="${comment.post.user.name} + ' ' + ${comment.post.user.surname}"></td>
                 <td>
-                    <input type="hidden" name="id" th:value="${post.id}"/>
+                    <input type="hidden" name="id" th:value="${comment.id}"/>
                     <button value="remove" class="btn btn-info">Usuń komentarz</button>
                 </td>
-
             </form>
         </tr>
 

@@ -1,4 +1,4 @@
-package com.example.twitter.Twitter.model.entity;
+package com.example.twitter.Twitter.model.entity.user;
 
 
 import javax.persistence.*;
@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class UserCredentials extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private String login;
     private String password;

@@ -3,8 +3,8 @@ package com.example.twitter.Twitter.model.service;
 
 import com.example.twitter.Twitter.model.dto.UserCredentialsDto;
 import com.example.twitter.Twitter.model.dto.UserDto;
-import com.example.twitter.Twitter.model.entity.User;
-import com.example.twitter.Twitter.model.entity.UserCredentials;
+import com.example.twitter.Twitter.model.entity.user.User;
+import com.example.twitter.Twitter.model.entity.user.UserCredentials;
 import com.example.twitter.Twitter.repository.UserCredentialsRepository;
 import com.example.twitter.Twitter.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -61,12 +61,13 @@ public class UserService {
     //    public void deleteUser(UserDto userDto) {
 //        userRepository.delete(userDto.getId());
 //    }
+
     public String getLoggedUserLogin() {
         return ((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
     }
 
     public User getLoggedUser() {
-        return userCredentialsRepository.findByLogin(getLoggedUserLogin()).orElseThrow(() -> new RuntimeException("Brk ussera"));
+        return userCredentialsRepository.findByLogin(getLoggedUserLogin()).orElseThrow(() -> new RuntimeException("Brk usera"));
     }
 
 }
