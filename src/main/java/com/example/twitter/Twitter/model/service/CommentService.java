@@ -27,18 +27,18 @@ public class CommentService {
     @Autowired
     private UserService userService;
 
-    public void addComment(CommentDto commentDto){
+    public void addComment(CommentDto commentDto) throws Exception {
         User user = userService.getLoggedUser();
         Comment comment = new Comment(commentDto.getMessage());
         comment.setUser(user);
         comment.setPost(postService.getPostById(commentDto.getPostId()));
-        System.out.println("Zmapowany komentarz: "  + comment.getId()
+        System.out.println("Zmapowany komentarz: " + comment.getId()
                 + " " + comment.getUser()
                 + " " + comment.getMessage());
         commentRepository.save(comment);
     }
 
-    public List<CommentDto> getAllComments(){
+    public List<CommentDto> getAllComments() {
         List<Comment> comments = commentRepository.findAll();
         for (Comment c : comments) {
             System.out.println("Komentarz: " + c.getId()
@@ -51,8 +51,14 @@ public class CommentService {
     }
 
 
-    public void deleteComment(CommentDto commentDto) {
-        commentRepository.deleteById(commentDto.getId());
+    public void deleteComment(CommentDto commentDto) throws IllegalAccessException {
+        Comment comment = commentRepository.findById(commentDto.getId()).get();
+        if (comment.getUser().getId() == userService.getLoggedUser().getId()) {
+            commentRepository.deleteById(commentDto.getId());
+        } else throw new IllegalAccessException("Nie mozesz usunac tego komentarza, nie Ty go dodales!");
+
     }
 }
+
+
 

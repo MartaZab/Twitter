@@ -19,7 +19,6 @@ public class CommentController {
     @RequestMapping("/comments")
     public ModelAndView commentView(){
         return new ModelAndView("comments", "allComments", service.getAllComments());
-
     }
 
     @GetMapping("/addcomment")
@@ -35,17 +34,17 @@ public class CommentController {
     }
 
     @PostMapping("/addcommentform")
-    public String addNewComment(@ModelAttribute CommentDto comment){
+    public String addNewComment(@ModelAttribute CommentDto comment) throws Exception {
         System.out.println("Dodajemy nowy komentarz " + comment.getMessage());
         service.addComment(comment);
-        return "comments";
+        return "index";
     }
 
     @PostMapping("/deletecomment")
-    public String deleteComment(@ModelAttribute("comment") CommentDto comment){
+    public String deleteComment(@ModelAttribute("comment") CommentDto comment) throws IllegalAccessException {
         System.out.println(comment.getId() + " " + comment.getMessage());
         service.deleteComment(comment);
-        return "index";
+        return "redirect:comments";
     }
 
 }

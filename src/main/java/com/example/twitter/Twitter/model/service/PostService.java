@@ -31,7 +31,6 @@ public class PostService {
 
     public void addPost(PostDto postDto) {
         User user = userService.getLoggedUser();
-//        User loggedUSer = userService
         Post post = mapper.map(postDto, Post.class);
         post.setUser(user);
         System.out.println("Zmapowany post: " + post.getId()
@@ -50,16 +49,17 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
-    public void deletePost(PostDto postDto) {
-        Post post = postRepository.findById(postDto.getId()).get();//orelsethrow
-            if(post.getUser().getId()==userService.getLoggedUser().getId()) {
+    public void deletePost(PostDto postDto) throws IllegalAccessException {
+        Post post = postRepository.findById(postDto.getId()).get();
+        if (post.getUser().getId() == userService.getLoggedUser().getId()) {
             postRepository.deleteById(postDto.getId());
-        } else {
-            System.out.println("Nie mozesz usunac tego posta!");
-        }
+        } else throw new IllegalAccessException("Nie mozesz usunac tego posta, nie jest Twój!");
+
     }
 
-    public Post getPostById(Long id) {
-        return postRepository.findById(id).get(); //elseThor
+    public Post getPostById(Long id) throws Exception {
+        if (postRepository.findById(id).isPresent()) {
+            return postRepository.findById(id).get(); 
+        } else throw new Exception("Nie ma takiego posta ");
     }
 }

@@ -22,6 +22,7 @@ public class UserController {
         return new ModelAndView("users", "allUsers", service.getAllUsers());
     }
 
+
     @GetMapping("/adduser")
     public ModelAndView createNewUser(){
         return new ModelAndView("adduserform", "userToInsert", new UserCredentialsDto());

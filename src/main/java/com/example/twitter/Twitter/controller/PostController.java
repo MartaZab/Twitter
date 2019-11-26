@@ -35,7 +35,7 @@ public class PostController {
     }
 
     @PostMapping("/deletepost")
-    public String deletePost(@ModelAttribute("post") PostDto post){
+    public String deletePost(@ModelAttribute("post") PostDto post) throws IllegalAccessException {
         System.out.println(post.getId() + " " + post.getMessage());
         service.deletePost(post);
         return "redirect:posts";
