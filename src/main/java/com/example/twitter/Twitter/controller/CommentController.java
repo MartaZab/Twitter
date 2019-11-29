@@ -21,6 +21,7 @@ public class CommentController {
         return new ModelAndView("comments", "allComments", service.getAllComments());
     }
 
+
     @GetMapping("/addcomment")
     public String createNewCommentView(@ModelAttribute CommentDto comment){
         return "redirect:addcommentform?postId=" + comment.getPostId();

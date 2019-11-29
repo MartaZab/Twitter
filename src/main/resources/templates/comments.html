@@ -24,7 +24,6 @@
         </tr>
         </thead>
         <tbody>
-
         <tr th:each="comment : ${allComments}">
             <form th:action="@{deletecomment}" method="post" th:object="${comment}">
                 <td th:text="${comment.user.name} + ' ' + ${comment.user.surname}">user</td>
@@ -37,7 +36,6 @@
                 </td>
             </form>
         </tr>
-
         </tbody>
     </table>
     <form action="/index">
