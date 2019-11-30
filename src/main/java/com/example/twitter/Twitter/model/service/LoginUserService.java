@@ -27,17 +27,15 @@ public class LoginUserService {
         BidingValidator.validate(result);
         System.out.println("Dodajemy uzytkownika " + userCredentialsDto.getLogin() + " " + userCredentialsDto.getPassword() + " " + userCredentialsDto.getRole());
         validateLoginUser(userCredentialsDto);
-        if(checkAuthorities(userCredentialsDto)){
-            System.out.println("Moge dodac uzytkownika");
-            String hash = bCryptPasswordEncoder.encode(userCredentialsDto.getPassword());
-            System.out.println("Haslo: " + userCredentialsDto.getPassword() + " " + " Hash: " + hash + " Matches: " + bCryptPasswordEncoder.matches("test", hash));
-
-            UserCredentials loginUser =  mapper.map(userCredentialsDto, UserCredentials.class);
-            loginUser.setPassword(hash);
-            loginUserRepository.save(loginUser);
-        } else {
+        if(!checkAuthorities(userCredentialsDto)){
             throw new RuntimeException("Wrong role!");
         }
+        System.out.println("Moge dodac uzytkownika");
+        String hash = bCryptPasswordEncoder.encode(userCredentialsDto.getPassword());
+        System.out.println("Haslo: " + userCredentialsDto.getPassword() + " " + " Hash: " + hash + " Matches: " + bCryptPasswordEncoder.matches("test", hash));
+        UserCredentials loginUser =  mapper.map(userCredentialsDto, UserCredentials.class);
+        loginUser.setPassword(hash);
+        loginUserRepository.save(loginUser);
     }
     private void validateLoginUser(UserCredentialsDto userCredentialsDto){
         if(loginExist(userCredentialsDto)){

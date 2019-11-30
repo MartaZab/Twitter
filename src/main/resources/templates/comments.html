@@ -11,36 +11,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div class="container">
-    <table class="table">
-        <h2><i class="fa fa-twitter" style="font-size:30px;color:dodgerblue">
-            Wszystkie posty</i></h2>
-        <thead>
-        <tr class="table-primary">
-            <th>Użytkownik:</th>
-            <th>Umieścił komentarz o treści:</th>
-            <th>Do posta:</th>
-            <th>Napisanego przez:</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="comment : ${allComments}">
-            <form th:action="@{deletecomment}" method="post" th:object="${comment}">
-                <td th:text="${comment.user.name} + ' ' + ${comment.user.surname}">user</td>
-                <td th:text="${comment.message}"></td>
-                <td th:text="${comment.post.message}"></td>
-                <td th:text="${comment.post.user.name} + ' ' + ${comment.post.user.surname}"></td>
-                <td>
+<div class="container" style="text-align: center">
+    <h2><i class="fa fa-twitter" style="font-size:30px;color:dodgerblue">
+        Wszystkie posty i komentrze</i></h2>
+
+<div class="row-gap" th:each="comment : ${allComments}">
+    <form th:action="@{deletecomment}" method="post" th:object="${comment}">
+        <div class="card-body">
+            <h3 class="card-title" th:text="${comment.post.user.name} + ' ' + ${comment.post.user.surname}"> </h3><p>napisał:</p>
+        </div>
+        <div class="card-body">
+            <h3 class="card-title" th:text="${comment.post.message}"></h3>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title" th:text="${comment.user.name} + ' ' + ${comment.user.surname}"></h4><p>skomentował:</p>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title" th:text="${comment.message}"></h4>
+        </div>
+        <br>
+                <div>
                     <input type="hidden" name="id" th:value="${comment.id}"/>
                     <button value="remove" class="btn btn-info">Usuń komentarz</button>
-                </td>
-            </form>
-        </tr>
-        </tbody>
-    </table>
+                </div>
+    </form>
+</div>
+    <div>
+        <br>
+        <br>
     <form action="/index">
         <button value="submit" class="btn btn-info">Powrót do strony głównej</button>
     </form>
+    </div>
 </div>
 </body>
 </html>

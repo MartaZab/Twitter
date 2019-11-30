@@ -7,11 +7,21 @@ h2 {
 }
 
 h3 {
-    color: royalblue;
+    color: midnightblue;
     font-size: 20px;
+}
+
+h4 {
+    color: blue;
+    font-size: 18px;
 }
 
 tr {
    color: blue;
     font-size: 20px;
+}
+
+body {
+
+    background-color: powderblue;
 }
